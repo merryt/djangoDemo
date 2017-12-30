@@ -3,7 +3,7 @@
 
 {% block content %}
     {% include "newsapp/header.html" %}
-    <h2>All Stories</h2>
+    <h1>All Stories</h1>
     <div class="stories">
     {% for article in articles %}
         {% include 'newsapp/story.html' with featured=False article=article %}

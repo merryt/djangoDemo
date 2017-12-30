@@ -3,6 +3,7 @@ import json
 from random import randrange
 from django.shortcuts import render
 from django.conf import settings
+from dateutil import parser
 
 
 content_api = os.path.join(settings.STATIC_ROOT, 'content_api.json')
@@ -12,6 +13,7 @@ for result in content_data["results"]:
     # created new parts of dictionary so we don't modify any part of the existing dictionary and save ourselfs a deepcopy
     result["article_type_pretty"] = result["article_type"].replace("-", " ")
     result["path_pretty"] = result["path"].replace(".aspx", "")
+    result["publish_date_pretty"] = parser.parse(result["publish_at"]).strftime("%d %B %y")
 
 def index(request):
 

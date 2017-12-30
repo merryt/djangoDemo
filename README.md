@@ -19,3 +19,8 @@ About the file structure
  - html is from support files (I might be removing as I go)
  - newsapp is the application
  
+ todo:
+ - Individual pages for reach article type (10 promise series etc)
+ - podcast
+ - individual stock pages
+ - Author page

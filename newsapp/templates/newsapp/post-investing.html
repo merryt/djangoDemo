@@ -4,9 +4,34 @@
     {% include "newsapp/header.html" %}
     
     {% include "newsapp/quotes.html" %}
-
-    <h2>{{headline}}</h2>
-    {{body|safe}}
-
+    <div class="post-container">
+        <div class="post-category">
+            <span class="date">{{publish_date_pretty}}</span>/
+            <span class="article">{{article_type_pretty}}</span>
+        </div>
+        <h1>{{headline}}</h1>
+    </div>
+    <div class="post-hero">
+        <img src="{{images.0.url}}" alt="{{images.0.url.alt}}">
+    </div>
+    <div class="post-container">
+        <div class="post-support">
+            <div class="post-byline">
+                <img src="{{authors.0.small_avatar_url}}" alt="">
+                {{authors.0.byline}}
+            </div>
+            <div class="post-instruments">
+                <div class="label">Related Stocks:</div>
+                {% for instrument in instruments %}
+                <div class="instrument">    
+                    <span>{{instrument.company_name}}</span>
+                    <span class="symbol">{{instrument.exchange}}:{{instrument.symbol}}</span>
+                </div>
+                {% endfor %}
+                    
+            </div>
+        </div>
+        {{body|safe}}
+    </div>
 
 {% endblock %}
