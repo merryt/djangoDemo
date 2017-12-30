@@ -1,0 +1,16 @@
+<article class="story {% if featured == True %}featured{% endif%}">
+    <div class="story-image">
+        <img src="{{article.images.0.url}}" alt="{{featured.images.0.name}}">
+    </div>
+    <div class="story-text">
+        <a href="{{article.path_pretty}}" class="story-content">   
+            <div class="type">{{article.article_type_pretty}}</div>
+            <div class="headline">{{article.headline}}</div>
+            <div class="promo">{{article.promo|safe}}</div>
+        </a> 
+        <div class="byline">
+            <img src="{{article.authors.0.small_avatar_url}}" alt="">
+            {{article.authors.0.byline}}
+        </div>
+    </div>
+</article>
