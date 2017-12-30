@@ -32,6 +32,7 @@ function copy(o) {
 
 
 var renderQuotes = (quotes, numberToRender) => {
+    document.getElementById('quotesBox').innerHTML = "";
     quotesToRender = quotes.slice(0) // deep clones so we don't the original data
     while(quotesToRender.length > numberToRender){
         randomQuoteIndex = Math.floor(Math.random() * quotesToRender.length)
@@ -45,12 +46,20 @@ var renderQuotes = (quotes, numberToRender) => {
 var renderQuote = (quote) => {
     var quoteTemplate = document.querySelector('#quoteTemplate');  
     quoteTemplate.content.querySelector('.companyName').innerText = quote.CompanyName;  
-    quoteTemplate.content.querySelector('.exchangeName').innerText = quote.ExchangeName;  
+    quoteTemplate.content.querySelector('.symbol').innerText = quote.Symbol;  
     quoteTemplate.content.querySelector('.price').innerText = quote.CurrentPrice.Amount;  
-    quoteTemplate.content.querySelector('.difference').innerText = quote.Change.Amount;  
+    quoteTemplate.content.querySelector('.difference').innerText = quote.Change.Amount + "%";  
+    if((quote.Change.Amount + "").substring(0,1) === "-"){
+        quoteTemplate.content.querySelector('.difference').classList.add("negative");
+    }else{
+        quoteTemplate.content.querySelector('.difference').classList.remove("negative");        
+    }
     var clone = document.importNode(quoteTemplate.content, true);  
-    document.getElementById("quotes-box").appendChild(clone);  
+    document.getElementById("quotesBox").prepend(clone);  
 }
 
 newQuotes();
-newQuotes();
+
+document.getElementById("rerenderQuotes").onclick = function(){
+    newQuotes();
+}

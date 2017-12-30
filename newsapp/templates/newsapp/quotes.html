@@ -1,16 +1,23 @@
 {% load static %}
 
 
-<div id="quotes-box">
+<div id="quotesBox" class="quotesBox">
     
+</div>
+<div id="rerenderQuotes" class="quotesBox-button">
+    Search the cushions for some new quotes!
 </div>
 
 <template id='quoteTemplate'>  
     <div class='quoteCard'>
-        <span class="companyName"></span>
-        <span class="exchangeName"></span>
-        <span class="price"></span>
-        <span class="difference"></span>
+        <div class="quoteCard-name">
+            <span class="symbol"></span>
+            <span class="companyName"></span>
+        </div>
+        <div class="quoteCard-price">
+            <span class="price"></span>
+            <span class="difference"></span>
+        </div> 
     </div>
 </template>  
 

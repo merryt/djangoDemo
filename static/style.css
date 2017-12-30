@@ -169,4 +169,101 @@ h2{
 
 
 
-/* quotes components */
+/* quotes and quote component */
+.quotesBox{
+    display: flex;
+    justify-content: space-between;
+    height: 50px; /* stops animation gitter */
+    width: 90%;
+    margin: 0 5%;
+}
+
+.quotesBox .quoteCard{
+    width: 20%;
+}
+.quoteCard{
+    display: flex;
+    justify-content: space-between;
+}
+
+.quoteCard-name, 
+.quoteCard-price{
+    display: flex;
+    flex-direction: column;
+}
+
+.quoteCard-price{text-align: right;}
+
+.quoteCard .symbol{
+    color: #392e5c;
+    font-size: 22px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.quoteCard .companyName{
+    color: #b3b3b3;
+}
+.quoteCard-price .difference{
+    color:#4ba90a;
+}
+.quoteCard-price .difference.negative{
+    color: #c7351d;
+}
+
+.quotesBox .quoteCard{
+    -webkit-backface-visibility: hidden;
+}
+@-webkit-keyframes delayFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    50% {
+        opacity:0; 
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+  }
+  
+  @keyframes delayFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    50% {
+        opacity:0; 
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+  }
+  
+.quotesBox .quoteCard:nth-child(1){
+    animation: delayFadeIn 400ms;
+    -webkit-animation: delayFadeIn 400ms;
+}
+.quotesBox .quoteCard:nth-child(2){
+    animation: delayFadeIn 1000ms;
+    -webkit-animation: delayFadeIn 1000ms;
+}
+.quotesBox .quoteCard:nth-child(3){
+    animation: delayFadeIn 1600ms;
+    -webkit-animation: delayFadeIn 1600ms;
+}
+
+.quotesBox-button{
+    text-align: right;
+    text-decoration: underline;
+    margin-top: 10px;
+    width: 90%;
+    margin: 10px 5% 0 5%;
+    cursor: pointer;
+}
+  
+  
