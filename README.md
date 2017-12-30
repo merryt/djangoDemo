@@ -13,13 +13,13 @@ To run the server run `python3 manage.py runserver`
 If you add any packages via the pip command, use `pip3 freeze > requirements.txt` afterwards to make sure the requirements file is up to date.
 
 
-About the file structure
+## About the file structure
  - blogproject is the project
  - djangoDemo is the virtual env files
  - html is from support files (I might be removing as I go)
  - newsapp is the application
  
- todo:
+ ## TODO:
  - Individual pages for reach article type (10 promise series etc)
  - podcast
  - individual stock pages

@@ -119,6 +119,11 @@ h2{
     flex-direction: column;
     margin-bottom: 20px
 }
+@media(max-width:1000px){
+    .story{
+        width:45%;
+    }
+}
 .story .type{
     color: #a0a6ad;
     text-transform: uppercase
