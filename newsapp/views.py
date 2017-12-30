@@ -9,6 +9,10 @@ from random import *
 content_api = os.path.join(settings.STATIC_ROOT, 'content_api.json')
 json_data = json.load(open(content_api))
 
+for result in json_data["results"]:
+    # created new part of dictionary so we don't modify any part of the existing dictionary and save ourselfs a deepcopy
+    result["article_type_pretty"] = result["article_type"].replace("-", " ")
+    result["path_pretty"] = result["path"].replace(".aspx", "")
 
 def index(request):
 
@@ -18,9 +22,6 @@ def index(request):
         for tag in result["tags"]:
             if tag["slug"] == "10-promise":
                 featured = result
-                featured["article_type_pretty"] = featured["article_type"].replace("-", " ")
-                # created new part of results so we don't modify the existing array
-                featured["path_pretty"] = featured["path"].replace(".aspx", "")
                 break
         if bool(featured):
             break
@@ -28,10 +29,9 @@ def index(request):
     articles = []
     while(len(articles) < 3):
         article_to_add = json_data["results"][randrange(len(json_data["results"]))]
-        article_to_add["article_type_pretty"] = article_to_add["article_type"].replace("-", " ")
-        article_to_add["path_pretty"] = article_to_add["path"].replace(".aspx", "")
         if article_to_add["uuid"] != featured["uuid"] and article_to_add not in articles:
             articles.append(article_to_add)
+            
     context = {
         'results': json_data["results"],
         'featured': featured,
@@ -40,9 +40,7 @@ def index(request):
     return render(request, 'newsapp/home.html', context)
 
 def investing(request, year, month, day, slug):
-    print("-------")
     url = "/investing/%s/%s/%s/%s.aspx" % (year, month, day, slug)
-
     for article in json_data["results"]:
         print("url  -", url)
         print("path -", article["path"])
@@ -54,3 +52,6 @@ def investing(request, year, month, day, slug):
         
     return render(request, 'newsapp/investing.html', context)
 
+def blog(request):
+    context = {'articles': json_data["results"]}
+    return render(request, 'newsapp/blog.html', context)

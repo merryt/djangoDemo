@@ -1,3 +1,5 @@
+This is a sample financial blog/podcasting site. 
+
 To run the virtual environment go to the root of this repo and run `source djangoDemo/bin/activate` 
 
 To install requirements use the command `pip3 install -r requirements.txt`

@@ -1,7 +1,7 @@
 <article class="story {% if featured == True %}featured{% endif%}">
-    <div class="story-image">
+    <a href="{{article.path_pretty}}" class="story-image">
         <img src="{{article.images.0.url}}" alt="{{featured.images.0.name}}">
-    </div>
+    </a>
     <div class="story-text">
         <a href="{{article.path_pretty}}" class="story-content">   
             <div class="type">{{article.article_type_pretty}}</div>
