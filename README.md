@@ -6,7 +6,7 @@ To install requirements use the command `pip3 install -r requirements.txt`
 
 If its your first time running the application you will need to run the following commands
 - `python manage.py migrate` 
-- do we even need a database for now?
+- Currently database isn't in use.
 
 To run the server run `python3 manage.py runserver`
 

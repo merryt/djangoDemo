@@ -1,8 +1,10 @@
 {% extends "newsapp/base.html" %}
 
-
 {% block content %}
     {% include "newsapp/header.html" %}
+    
+    {% include "newsapp/quotes.html" %}
+
     <h2>{{headline}}</h2>
     {{body|safe}}
 

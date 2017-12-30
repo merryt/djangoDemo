@@ -1,0 +1,20 @@
+{% load static %}
+
+
+<div id="quotes-box">
+    
+</div>
+
+<template id='quoteTemplate'>  
+    <div class='quoteCard'>
+        <span class="companyName"></span>
+        <span class="exchangeName"></span>
+        <span class="price"></span>
+        <span class="difference"></span>
+    </div>
+</template>  
+
+<script type="text/javascript">
+    var jsonPath = "{% static "quotes_api.json" %}"
+</script>
+<script type="text/javascript" src="{% static "quotes.js" %}"></script>
