@@ -21,6 +21,6 @@ If you add any packages via the pip command, use `pip3 freeze > requirements.txt
  
  ## TODO:
  - Individual pages for reach article type (10 promise series etc)
- - podcast
- - individual stock pages
+ - Podcast
+ - Individual stock pages
  - Author page
