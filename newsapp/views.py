@@ -4,6 +4,8 @@ from random import randrange
 from django.shortcuts import render
 from django.conf import settings
 from dateutil import parser
+import random
+from newsapp.utils import finds_item_in_array_based_on_keyvalue
 
 
 content_api = os.path.join(settings.STATIC_ROOT, 'content_api.json')
@@ -16,31 +18,26 @@ for result in content_data["results"]:
     result["publish_date_pretty"] = parser.parse(result["publish_at"]).strftime("%d %B %y")
 
 def index(request):
-    results = content_data["results"]
+    '''
+        this code could be rewritten if we matched by "article_type": "10-promise-series" 
+        instead of looping through the tags... this would also stop the double break, but the instructions said match
+        to the tag, so I kept it as that for now. 
+    '''
+    articles = content_data["results"][:]
     number_of_articles_to_display = 3
-    # this code could be rewritten if we matched by "article_type": "10-promise-series" instead of looped through the tags
     featured = {}
-    for result in results:
-        # create new function that is "finds item in array based on keyvalue"
-        for tag in result["tags"]:
+    for article in articles:
+        for tag in article["tags"]:
             if tag["slug"] == "10-promise":
-                featured = result
+                featured = article
                 break
         if bool(featured):
             break
-    
-    # clone the array,  then random `random.shuffle(array)` then grab first 3 (make sure I remove 10-promise from above)
-    
-    articles = []
-    while(len(articles) < number_of_articles_to_display):
-        length_of_array = len(results)
-        random_index_in_results = randrange(length_of_array)
-        article_to_add = results[random_index_in_results]
-        if article_to_add["uuid"] != featured["uuid"] and article_to_add not in articles:
-            articles.append(article_to_add)
 
+    articles.remove(featured)
+    random.shuffle(articles)
+    articles = articles[0:number_of_articles_to_display]
     context = {
-        'results': results,
         'featured': featured,
         'articles': articles
     }
@@ -48,14 +45,10 @@ def index(request):
 
 def investing(request, year, month, day, slug):
     url = "/investing/%s/%s/%s/%s.aspx" % (year, month, day, slug)
-    # create new function that is "finds item in array based on keyvalue"
-    for article in content_data["results"]:
-        if article["path"] == url:
-            context = article
-            break
-        
+    context = finds_item_in_array_based_on_keyvalue(content_data["results"], "path", url)
     return render(request, 'newsapp/post-investing.html', context)
 
 def blog(request):
     context = {'articles': content_data["results"]}
     return render(request, 'newsapp/page-blog.html', context)
+
