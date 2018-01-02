@@ -1,0 +1,13 @@
+<header {% if color == True %}class="transparent"{% endif%}>
+    {% load static %}
+    {% if color == True %}
+        <a href="/"><img src="{% static "img/logo-light.png" %}" alt="logo" /></a>
+    {% else%}
+        <a href="/"><img src="{% static "img/logo-dark.png" %}" alt="logo" /></a>
+    {% endif%}
+    <div class="nav">
+        <a href="/">Home</a>
+        <a href="#">Podcast</a>
+        <a href="/blog/">Blog</a>
+    </div>
+</header>

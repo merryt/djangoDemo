@@ -6,8 +6,7 @@ var newQuotes = () =>{
         if (request.status >= 200 && request.status < 400) {
             // Success!
             var data = JSON.parse(request.responseText);
-            numberOfQuotesToRender = 3
-            renderQuotes(data, numberOfQuotesToRender)
+            renderQuotes(data, 3)
         } else {
             // We reached our target server, but it returned an error
 
@@ -17,17 +16,12 @@ var newQuotes = () =>{
     request.onerror = function() {
     // There was a connection error of some sort
     };
-
     request.send();
 }
 
 var renderQuotes = (quotes, numberToRender) => {
     document.querySelector('#quotesBox').innerHTML = "";
-    quotes = quotes.randomize();
-    quotes = quotes.slice(0,3);
-    for(var i = 0; i < quotes.length; i++){
-        renderQuote(quotes[i])
-    }
+    quotes.randomize().slice(0,numberToRender).forEach(renderQuote);
 }
 
 var renderQuote = (quote) => {

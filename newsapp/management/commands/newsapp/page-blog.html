@@ -1,0 +1,12 @@
+{% extends "newsapp/base.html" %}
+
+
+{% block content %}
+    {% include "newsapp/header.html" %}
+    <h1>All Stories</h1>
+    <div class="stories">
+    {% for article in articles %}
+        {% include 'newsapp/story.html' with featured=False article=article %}
+    {% endfor %}
+    </div>
+{% endblock %}

@@ -17,29 +17,26 @@ for result in content_data["results"]:
     result["path_pretty"] = result["path"].replace(".aspx", "")
     result["publish_date_pretty"] = parser.parse(result["publish_at"]).strftime("%d %B %y")
 
-def index(request):
-    '''
-        this code could be rewritten if we matched by "article_type": "10-promise-series" 
-        instead of looping through the tags... this would also stop the double break, but the instructions said match
-        to the tag, so I kept it as that for now. 
-    '''
-    articles = content_data["results"][:]
-    number_of_articles_to_display = 3
-    featured = {}
-    for article in articles:
-        for tag in article["tags"]:
-            if tag["slug"] == "10-promise":
-                featured = article
-                break
-        if bool(featured):
+articles = content_data["results"][:]
+number_of_articles_to_display = 3
+featured = {}
+# this code could be rewritten if we matched by "article_type": "10-promise-series" 
+# instead of looping through the tags... this would also stop the double break, but the instructions said match
+# to the tag, so I kept it as that for now. 
+for article in articles:
+    for tag in article["tags"]:
+        if tag["slug"] == "10-promise":
+            featured = article
             break
+    if bool(featured):
+        break
+articles.remove(featured)
 
-    articles.remove(featured)
+def index(request):
     random.shuffle(articles)
-    articles = articles[0:number_of_articles_to_display]
     context = {
         'featured': featured,
-        'articles': articles
+        'articles': articles[0:number_of_articles_to_display]
     }
     return render(request, 'newsapp/page-home.html', context)
 
