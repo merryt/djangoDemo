@@ -1,0 +1,25 @@
+{% extends "newsapp/base.html" %}
+
+
+{% block content %}
+    {% include 'newsapp/header.html' with color=True %}
+    <div class="hero">
+        <h1>
+            Everyone likes finding change in the couch.
+        </h1>
+        <h2>
+            Investing can be like couch diving, we are here to separate aunt Maggie's quarters from uncle Tony's half eaten dinner mint.
+        </h2>
+    </div>
+    
+    {% include 'newsapp/story.html' with featured=True article=featured %}
+
+    <div class="stories">
+        {% for article in articles %}
+            {% include 'newsapp/story.html' with featured=False article=article %}
+        {% endfor %}
+    </div>
+    
+
+
+{% endblock %}
