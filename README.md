@@ -1,6 +1,7 @@
 This is a sample financial blog/podcasting site. 
 
-##The fastest way to get it up and running is 
+## The fastest way to get it up and running is:
+
 `python3 manage.py start` -- this will activate a virtual env, install requirements, and then start the server.
 
 
